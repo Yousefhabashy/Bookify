@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Bookify.Domain": {
+      "commandName": "Project"
+    }
+  }
+}

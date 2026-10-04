@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Bookify.Api/Bookify.Api.csproj" Id="9e6b0bf8-f480-48d5-ba25-d22e879188e1" />
+    <Project Path="Bookify.Application/Bookify.Application.csproj" Id="a4133328-10a8-43f6-af9f-2d9ff49f87b8" />
+    <Project Path="Bookify.Domain/Bookify.Domain.csproj" />
+    <Project Path="Bookify.Infrastructure/Bookify.Infrastructure.csproj" Id="2073d532-f6f7-4254-b430-de46a2dee8eb" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="Application.IntegrationTests/Application.IntegrationTests.csproj" Id="251cbc2e-57f4-485a-8a1b-bc85876c4c8b" />
+    <Project Path="Application.UnitTests/Application.UnitTests.csproj" Id="27e2e0f1-a076-4c72-8a1f-0bec6d60ae51" />
+    <Project Path="Domain.UnitTests/Domain.UnitTests.csproj" Id="65623949-5158-482d-bb1f-21eb4a3d2fa3" />
+  </Folder>
+</Solution>

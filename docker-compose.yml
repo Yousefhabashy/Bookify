@@ -1,0 +1,63 @@
+services:
+  bookify-db:
+    image: postgres:17
+    container_name: bookify-db
+    environment:
+      POSTGRES_USER: bookify
+      POSTGRES_PASSWORD: YourStrongPass123
+      POSTGRES_DB: bookify
+    ports:
+      - "5432:5432"
+    volumes:
+      - bookify-db-data:/var/lib/postgresql/data
+
+  keycloak-db:
+    image: postgres:17
+    container_name: keycloak-db
+    environment:
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: YourStrongPass123
+      POSTGRES_DB: keycloak
+    volumes:
+      - keycloak-db-data:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    container_name: bookify-keycloak
+    command: start-dev
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: YourStrongPass123
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "18080:8080"
+    depends_on:
+      - keycloak-db
+
+  seq:
+      image: datalust/seq:latest
+      container_name: bookify-seq
+      environment:
+        - ACCEPT_EULA=Y
+        - SEQ_FIRSTRUN_NOAUTHENTICATION=true   # TODO: Activate Authentication before production 
+      ports:
+        - "5341:80"
+        - "5340:5340"
+      restart: unless-stopped
+
+  redis:
+      image: redis:7
+      container_name: bookify-redis
+      ports:
+        - "6379:6379"
+      volumes:
+        - bookify-redis-data:/data
+      restart: unless-stopped
+
+volumes:
+  bookify-db-data:
+  keycloak-db-data:
+  bookify-redis-data:
